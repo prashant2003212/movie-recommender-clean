@@ -14,7 +14,7 @@ SIMILARITY_FILE_ID = "1wEOB82JzO31usq7hNwdfH1knLv4uT4fS"
 gdown.download(f"https://drive.google.com/uc?id={MOVIES_FILE_ID}", "movies_dict_main1.pkl", quiet=False)
 gdown.download(f"https://drive.google.com/uc?id={SIMILARITY_FILE_ID}", "similarity_new1.pkl", quiet=False)
 
-
+@st.cache_data
 def fetch_poster(movie_id):
     url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={API_KEY}&language=en-US"
     response = requests.get(url)
