@@ -17,11 +17,11 @@ st.markdown("""
     <style>
         .block-container {
             max-width: 85% !important;   /* increase width */
-            padding-left: 2rem;
-            padding-right: 2rem;
+            padding-left: 3rem;
+            padding-right: 3rem;
         }
         .movie-title {
-            font-size: 14px;
+            font-size: 20px;
             font-weight: 600;
             text-align: center;
             margin-top: 5px;
