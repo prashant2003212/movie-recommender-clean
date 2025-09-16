@@ -73,14 +73,12 @@ similarity = pickle.load(open('similarity_new1.pkl', 'rb'))
 # ----------------------------
 # Streamlit UI
 # ----------------------------
-st.title('🎬 Movie Recommender System')
-
 # Center the title
 st.markdown("""
     <style>
         .centered-title {
             text-align: center;
-            font-size: 36px;
+            font-size: 45px;
             font-weight: bold;
         }
     </style>
