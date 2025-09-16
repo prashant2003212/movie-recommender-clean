@@ -78,7 +78,7 @@ st.markdown("""
     <style>
         .centered-title {
             text-align: center;
-            font-size: 45px;
+            font-size: 70px;
             font-weight: bold;
         }
     </style>
