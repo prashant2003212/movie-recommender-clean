@@ -2,18 +2,10 @@ import requests
 import streamlit as st
 import pickle
 import pandas as pd
-import gdown
 
 API_KEY = "a7a30f30fbcd1e0d561d63faf713f6b0"
 
-# ---- Google Drive File IDs ----
-MOVIES_FILE_ID = "1PTi4P7N_FGIksojIpNvmeGXnODdrNKf6"
-SIMILARITY_FILE_ID = "1wEOB82JzO31usq7hNwdfH1knLv4uT4fS"
-
-# ---- Download from Google Drive if not exists ----
-gdown.download(f"https://drive.google.com/uc?id={MOVIES_FILE_ID}", "movies_dict_main1.pkl", quiet=False)
-gdown.download(f"https://drive.google.com/uc?id={SIMILARITY_FILE_ID}", "similarity_new1.pkl", quiet=False)
-
+# ---- Poster Fetch Function ----
 @st.cache_data
 def fetch_poster(movie_id):
     url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={API_KEY}&language=en-US"
@@ -25,7 +17,7 @@ def fetch_poster(movie_id):
     else:
         return "https://via.placeholder.com/500x750?text=No+Poster"
 
-
+# ---- Recommend Function ----
 def recommend(movie):
     movie_index = movies[movies['title'] == movie].index[0]
     distances = similarity[movie_index]
@@ -39,8 +31,7 @@ def recommend(movie):
         recommended_movies_posters.append(fetch_poster(movie_id))
     return recommended_movies, recommended_movies_posters
 
-
-# ---- Load Pickle files ----
+# ---- Load Pickle files (local from repo) ----
 movies_dict = pickle.load(open('movies_dict_main1.pkl', 'rb'))
 movies = pd.DataFrame(movies_dict)
 
