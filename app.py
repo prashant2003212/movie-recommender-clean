@@ -3,13 +3,35 @@ import streamlit as st
 import pickle
 import pandas as pd
 
-import streamlit as st
-
+# ----------------------------
+# Page Config & Layout
+# ----------------------------
 st.set_page_config(
     page_title="🎬 Movie Recommender",
-    page_icon="assets/favicon.png"  # yahi tumhari image use hogi
+    page_icon="assets/favicon.png",
+    layout="wide"   # expands layout
 )
 
+# Custom CSS for max-width
+st.markdown("""
+    <style>
+        .block-container {
+            max-width: 95% !important;   /* increase width */
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+        .movie-title {
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            margin-top: 5px;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+# ----------------------------
+# API Key for TMDB
+# ----------------------------
 API_KEY = "a7a30f30fbcd1e0d561d63faf713f6b0"
 
 # ---- Poster Fetch Function ----
@@ -38,13 +60,17 @@ def recommend(movie):
         recommended_movies_posters.append(fetch_poster(movie_id))
     return recommended_movies, recommended_movies_posters
 
-# ---- Load Pickle files (local from repo) ----
+# ----------------------------
+# Load Pickle files
+# ----------------------------
 movies_dict = pickle.load(open('movies_dict_main1.pkl', 'rb'))
 movies = pd.DataFrame(movies_dict)
 
 similarity = pickle.load(open('similarity_new1.pkl', 'rb'))
 
-# ---- Streamlit UI ----
+# ----------------------------
+# Streamlit UI
+# ----------------------------
 st.title('🎬 Movie Recommender System')
 
 selected_movie_name = st.selectbox(
@@ -55,16 +81,16 @@ selected_movie_name = st.selectbox(
 if st.button('Recommend'):
     names, posters = recommend(selected_movie_name)
 
-    # first row
+    # First row
     cols = st.columns(5)
     for i in range(5):
         with cols[i]:
-            st.text(names[i])
-            st.image(posters[i])
+            st.image(posters[i], use_container_width=True)
+            st.markdown(f"<div class='movie-title'>{names[i]}</div>", unsafe_allow_html=True)
 
-    # second row
+    # Second row
     cols = st.columns(5)
     for i in range(5, 10):
         with cols[i-5]:
-            st.text(names[i])
-            st.image(posters[i])
+            st.image(posters[i], use_container_width=True)
+            st.markdown(f"<div class='movie-title'>{names[i]}</div>", unsafe_allow_html=True)
