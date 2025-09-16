@@ -3,6 +3,13 @@ import streamlit as st
 import pickle
 import pandas as pd
 
+import streamlit as st
+
+st.set_page_config(
+    page_title="🎬 Movie Recommender",
+    page_icon="assets/favicon.png"  # yahi tumhari image use hogi
+)
+
 API_KEY = "a7a30f30fbcd1e0d561d63faf713f6b0"
 
 # ---- Poster Fetch Function ----
