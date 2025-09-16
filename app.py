@@ -29,6 +29,8 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+
+
 # ----------------------------
 # API Key for TMDB
 # ----------------------------
@@ -72,6 +74,19 @@ similarity = pickle.load(open('similarity_new1.pkl', 'rb'))
 # Streamlit UI
 # ----------------------------
 st.title('🎬 Movie Recommender System')
+
+# Center the title
+st.markdown("""
+    <style>
+        .centered-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+        }
+    </style>
+    <h1 class="centered-title">🎬 Movie Recommender System</h1>
+""", unsafe_allow_html=True)
+
 
 selected_movie_name = st.selectbox(
     'Select a movie:',
